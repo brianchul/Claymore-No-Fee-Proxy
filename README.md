@@ -1,44 +1,43 @@
 # flakjacket ETH
 ## fork from JuicyPasta with some improvement
 
-Removes Claymore's 1-2% mining fee using Stratum Proxy. Tested on Ubuntu 16.04 and Windows 10 with Claymore 9.7 ETH.
-Since Claymore no longer maintain but it still works on PhoenixMiner.
-Works with PhoenixMiner_5.2e, may work with future versions.
+Removes Claymore's 1-2% mining fee using Stratum Proxy. Tested on Ubuntu 16.04 and Windows 10 with Claymore 9.7 ETH.\
+Since Claymore no longer maintain but it still works on PhoenixMiner.\
+Works with PhoenixMiner_5.2e, may work with future versions.\
 Available to listen to multiple ports.
 
 ## How it works?
 This proxy is placed between Claymore and Internet in order to catch mining fee packet and substituting the devfee address with your wallet address. The redirection are done on the fly and do not require stoping or relaunching the mining software.
 
 ## Limitation
-This proxy will not intercept SSL connection, SSL MITM may or may not update in future version.
+This proxy will not intercept SSL connection, SSL MITM may or may not update in future version.\
 PhoenixMiner will set fallback to unencrypted connection if SSL connection is not reachable, so it works in the present.
 ## Setup
 
 ### Python
 ~~Python 2.7 is required~~
-Supports to Python 3
+Supports to Python 3\
 python package - termcolor
 ### PIP
 `pip install termcolor`
 
 ### Create a fake Wan Network
-Since Claymore may detect localhost IP (see FAQ), create a fake Wan as localhost is needed.
-PhoenixMiner does not detect at this point but may in the future.
+Since Claymore may detect localhost IP (see FAQ), create a fake Wan as localhost is needed.\
+PhoenixMiner does not detect at this point but may in the future.\
 Follow this [guide for Windows](https://github.com/JuicyPasta/Claymore-No-Fee-Proxy/wiki/Creating-a-fake-WAN-network-(Win))
 
 ~~NB: DNS redirection is not mandatory anymore (except for ETH-fork mining).~~
 
 ## Redirect mining pool DNS
-Redirect mining pool IP to the IP set above.
+Redirect mining pool IP to the IP set above.\
 The Hosts file may contain all mining pools used by PhoenixMiner, you can add it to your Windows Hosts file or your own dns server if you have one.
 
-You need to check if your preferred mining pool is in this list, if so you need to avoid redirect since it may causing loop.
+You need to check if your preferred mining pool is in this list, if so you need to avoid redirect since it may causing loop.\
 PhoenixMiner won't use the same pool and port in epools or in command line options.
 
 ## Get Mining pool IP (optional)
-Useful if you want to capture all fee pools.
-Get mining pool's IP using ping command e.g.:
-`ping ethermine.org`
+Useful if you want to capture all fee pools.\
+Get mining pool's IP using ping command e.g. :`ping ethermine.org`
 ## RUN
 
 Run the proxy daemon first and pay attention to change the pool you use, you must specify here your real pool (some example in start-proxy.bat):
